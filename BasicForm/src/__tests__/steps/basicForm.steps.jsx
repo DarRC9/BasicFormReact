@@ -3,6 +3,49 @@ import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import App from '../../App.jsx'
 
+const getSectionInput = (sectionName) => {
+  let testId
+    switch (sectionName) {
+      case "username":
+        testId = "usernameInput"
+        break;
+      case "name":
+        testId = "nameInput"
+        break;
+      case "surname":
+        testId = "surnameInput"
+        break;
+      case "id":
+        testId = "idInput"
+        break;
+      default:
+        testId = "countryInput"
+        break;
+    }
+    return testId
+}
+
+const getSectionMessage = (sectionName) => {
+  let testId
+    switch (sectionName) {
+      case "username":
+        testId = "usernameMessage"
+        break;
+      case "name":
+        testId = "nameMessage"
+        break;
+      case "surname":
+        testId = "surnameMessage"
+        break;
+      case "id":
+        testId = "idMessage"
+        break;
+      default:
+        testId = "countryMessage"
+        break;
+    }
+    return testId
+}
 
 export const basicFormSteps = ({
     given: Given,
@@ -45,30 +88,26 @@ export const basicFormSteps = ({
     //   })
     // })
     Given(/^the user selects the "(.*)" section$/, (sectionName) => {
-      let testId
-      switch (sectionName) {
-        case "username":
-          testId = 
-          break;
-        case "name":
-          
-          break;
-        case "surname":
-          
-          break;
-        case "id":
-          
-          break;
-        default:
-          break;
-      }
+      render(<App/>)
+      const testId = getSectionInput(sectionName)
+
+      const section = screen.getByTestId(testId)
+      fireEvent.click(section)
     });
 
     And(/^the user selects the "(.*)" section$/, (sectionName) => {
+      render(<App/>)
+      const testId = getSectionInput(sectionName)
 
+      const section = screen.getByTestId(testId)
+      fireEvent.click(section)
     });
 
-    Then(/^the "(.*)" section should show "(.*)"$/, (sectionName, message) => {
+    Then(/^the "(.*)" section should show an error$/, (sectionName) => {
+      render(<App/>)
+      const testId = getSectionMessage(sectionName)
+      const sectionMessage = screen.getByTestId(testId)
+      expect(sectionMessage).not.toBe(false)
 
     });
 

@@ -32,17 +32,17 @@ function App() {
               <input data-testid="usernameInput" className="formInput" placeholder="JR09" onChange={checkUsername}/>
               
             </div>
-            <UnsuccesfullValidation value={username} sectionType={'username'} error={error} />
+            <UnsuccesfullValidation data-testid="usernameMessage" value={username} sectionType={'username'} error={error} />
             <div className='section firstName'>
               <label className='formLabel'>First Name</label>
               <input data-testid="nameInput" className='formInput' placeholder="JORGE" />
             </div>
-            <UnsuccesfullValidation  value={username} sectionType={'username'} error={error} />
+            <UnsuccesfullValidation data-testid="nameMessage" value={username} sectionType={'username'} error={error} />
             <div className='section surname'>
               <label className='formLabel'>Surname</label>
-              <input data-testid="formInput" className='formInput' placeholder="RAMIREZ" />
+              <input data-testid="usernameInput" className='formInput' placeholder="RAMIREZ" />
             </div>
-            <UnsuccesfullValidation value={username} sectionType={'username'} error={error} />
+            <UnsuccesfullValidation data-testid="surnameMessage" value={username} sectionType={'username'} error={error} />
             <div className='section country'>
               <label className='w-4/12'>Country</label>
               <select className="w-8/12" name='Country'>
@@ -55,7 +55,7 @@ function App() {
               <label className='formLabel'>ID</label>
               <input data-testid="formInput" className='formInput' placeholder="12345678D" />
             </div>
-            <UnsuccesfullValidation value={username} sectionType={'username'} error={error} />
+            <UnsuccesfullValidation data-testid="idMessage" value={username} sectionType={'username'} error={error} />
      
           </div>
           <div className='section button'>
