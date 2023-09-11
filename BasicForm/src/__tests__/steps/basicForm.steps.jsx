@@ -1,37 +1,8 @@
 /* eslint-disable */
 import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import Minesweeper from '../../components/Minesweeper.jsx'
 import App from '../../App.jsx'
 
-const rightClickTile = (rowIndex, columnIndex) => {
-  const coordinate = `${rowIndex-1}-${columnIndex-1}`
-  const cell = screen.getByTestId(coordinate + ' tile')
-  fireEvent.contextMenu(cell)
-}
-
-const leftClickTile = (rowIndex, columnIndex) => {
-  const coordinate = `${rowIndex-1}-${columnIndex-1}`
-  const cell = screen.getByTestId(coordinate + ' tile')
-  fireEvent.click(cell)
-}
-
-const loadMockData = async (mockData) => {  
-  const textarea = screen.getByTestId("mockData-text");
-  const submitButton = screen.getByTestId("mockData-submit");
-
-  fireEvent.change(textarea, { target: { value: mockData } });
-  fireEvent.click(submitButton);
-  await waitFor(() => expect(textarea.value).toBe(mockData));
-}
-
-const tagAsInconclusive = async (rowIndex, columnIndex) => {
-  const coordinate = `${rowIndex-1}-${columnIndex-1}`
-  const cell = screen.getByTestId(coordinate + ' tile')
-  rightClickTile(rowIndex, columnIndex)
-  await waitFor(() => fireEvent.contextMenu(cell))
-  
-}
 
 export const basicFormSteps = ({
     given: Given,
@@ -40,10 +11,65 @@ export const basicFormSteps = ({
     then: Then
 }) => {
 
-  let game
+  let app
 
-    Given("the player opens the game", () => {
-      game = render(<Minesweeper/>)
+    Given("the user opens the app", () => {
+      render(<App/>)
     })
+
+    Then("all inputs should be enabled", () => {
+      render(<App/>)
+      const inputs = screen.getAllByTestId("formInput")
+
+      inputs.forEach(input => {
+        expect(input).not.toHaveClass('pointer-events-none')
+      })
+    })
+
+    Then("all buttons should be enabled", () => {
+      render(<App/>)
+      const buttons = screen.getAllByTestId("formButton")
+
+      buttons.forEach(button => {
+        expect(button).not.toHaveClass('pointer-events-none')
+      })
+    })
+
+    // Then("all placeholders should be in capital", () => {
+    //   render(<App/>)
+    //   const placeholders = screen.getAllByTestId("formInput")
+    //   //prop
+    //   placeholders.forEach(placeholder => {
+    //     const data = placeholder.getElementsByClassName('placeholder')
+    //     expect(data).not.toContain('a' )
+    //   })
+    // })
+    Given(/^the user selects the "(.*)" section$/, (sectionName) => {
+      let testId
+      switch (sectionName) {
+        case "username":
+          testId = 
+          break;
+        case "name":
+          
+          break;
+        case "surname":
+          
+          break;
+        case "id":
+          
+          break;
+        default:
+          break;
+      }
+    });
+
+    And(/^the user selects the "(.*)" section$/, (sectionName) => {
+
+    });
+
+    Then(/^the "(.*)" section should show "(.*)"$/, (sectionName, message) => {
+
+    });
 
 }

@@ -1,33 +1,48 @@
-import { useState } from 'react'
+import React from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { UnsuccesfullValidation } from './components/UnsuccesfullValidation'
 
 function App() {
 
   const [username, setUsername] = useState('')
+  const [error, setError] = useState(null)
 
-  const checkValidationSection = (sectionValue) => {
-    console.log(sectionValue)
+  const checkUsername = (input) => {
+    const newUsername = input.target.value
+    setUsername(newUsername)
+
+    if (newUsername.length > 10) {
+      setError("Username too large (10 char. max)")
+    } else {
+      setError(false)
+    }
+    
   }
+
 
   return (
     <div className='page' data-testid="page">
       <h1>Formulario</h1>
-      <header className="w-11/12" data-testid="header">
-        <form className="border-solid border-white border-4 rounded-lg p-5 w-" data-testid="form">
+      <header className="header" data-testid="header">
+        <form className="form" data-testid="form">
           <div className='formBody'>
-            <div className='flex flex-col items-center content-center text-lg m-1 sm:flex-row sm:text-base sm:m-0.5'>
-              <label className='w-4/12'>Username</label>
-              <input className="w-8/12 border-dashed border-2 border-white rounded-lg" placeholder="JR09" onChange={(username) => checkValidationSection(username.target.value)}/>
+            <div className='section'>
+              <label className='formLabel'>Username</label>
+              <input data-testid="usernameInput" className="formInput" placeholder="JR09" onChange={checkUsername}/>
+              
             </div>
+            <UnsuccesfullValidation value={username} sectionType={'username'} error={error} />
             <div className='section firstName'>
               <label className='formLabel'>First Name</label>
-              <input className='formInput' placeholder="JORGE" />
+              <input data-testid="nameInput" className='formInput' placeholder="JORGE" />
             </div>
+            <UnsuccesfullValidation  value={username} sectionType={'username'} error={error} />
             <div className='section surname'>
               <label className='formLabel'>Surname</label>
-              <input className='formInput' placeholder="RAMIREZ" />
+              <input data-testid="formInput" className='formInput' placeholder="RAMIREZ" />
             </div>
+            <UnsuccesfullValidation value={username} sectionType={'username'} error={error} />
             <div className='section country'>
               <label className='w-4/12'>Country</label>
               <select className="w-8/12" name='Country'>
@@ -38,17 +53,17 @@ function App() {
             </div>
             <div className='section id'>
               <label className='formLabel'>ID</label>
-              <input className='formInput' placeholder="12345678D" />
+              <input data-testid="formInput" className='formInput' placeholder="12345678D" />
             </div>
+            <UnsuccesfullValidation value={username} sectionType={'username'} error={error} />
      
           </div>
           <div className='section button'>
-            <button className='submitButton' type='submit'>Sign Up</button>
-            <button className='clearButton' type='clear'>Clear</button>
+            <button data-testid="formButton" className='submitButton' type='submit'>Sign Up</button>
+            <button data-testid="formButton" className='clearButton' type='clear'>Clear</button>
           </div>
           
         </form>
-        <UnsuccesfullValidation error={false}/>
       </header>
       <main>
 
