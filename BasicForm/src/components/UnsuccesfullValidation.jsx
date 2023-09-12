@@ -1,8 +1,8 @@
 import React from 'react'
 
-export function UnsuccesfullValidation ({ value, sectionType, error }) {
+export function UnsuccesfullValidation ({ sectionType, error }) {
   if (error === false) return null
-
+  const dataTestId = sectionType + "Message"
   // let error = false
   //   switch (sectionType) {
   //     case 'username':
@@ -30,7 +30,7 @@ export function UnsuccesfullValidation ({ value, sectionType, error }) {
     
 
     return (
-        <div className='validationMessage' data-testid="warnMessage">
+        <div className='sectionMessage' data-testid={dataTestId}>
           {error}
         </div>
     )

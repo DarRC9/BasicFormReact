@@ -42,6 +42,7 @@ main {
 }
 .formInput:hover {
   border-color: rgb(125, 125, 236);
+  
 }
 
 .formLabel {
