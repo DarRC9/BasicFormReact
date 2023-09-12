@@ -55,15 +55,16 @@ function App() {
             <UnsuccesfullValidation value={username} sectionType={'surname'} error={error} />
             <div className='section country'>
               <label className='w-4/12'>Country</label>
-              <select className="w-8/12" name='Country'>
-                <option value="ESPAÑA">ESPAÑA</option>
-                <option value="JAPON">jAPON</option>
+              <select className="countrySelection" name='Country'>
+                <option value="SELECT A COUNTRY">SELECT A COUNTRY</option>
+                <option value="SPAIN">SPAIN</option>
+                <option value="JAPAN">JAPAN</option>
               </select>
               
             </div>
             <div className='section id'>
               <label className='formLabel'>ID</label>
-              <input data-testid="formInput" className='formInput' placeholder="12345678D" />
+              <input data-testid="idInput" className='formInput' placeholder="12345678D" />
             </div>
             <UnsuccesfullValidation value={username} sectionType={'country'} error={error} />
      

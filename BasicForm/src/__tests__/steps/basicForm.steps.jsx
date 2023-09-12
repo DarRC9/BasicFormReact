@@ -48,6 +48,12 @@ const getSectionMessage = (sectionName) => {
     return testId
 }
 
+const selectCountry = (country) => {
+  const selectElement = screen.getByRole('combobox', {name: '' })
+  fireEvent.change(selectElement, {target: { value: country}})
+  //expect(screen.getByRole('option', { name: 'SPAIN'}).selected).toBe(true)
+}
+
 const fillSectionInput = (data, sectionType) => {
   const testId = getSectionInput(sectionType)
   const section = screen.getByTestId(testId)
@@ -71,7 +77,7 @@ const inputFormData = (formData) => {
   fillSectionInput(nameData, "name")
   fillSectionInput(surnameData, "surname")
   fillSectionInput(idData, "id")
-  
+  selectCountry(countryData)
 }
 
 export const basicFormSteps = ({
@@ -85,22 +91,22 @@ export const basicFormSteps = ({
   let sectionUsed
 
   Given(/^the user opens the app$/, () => {
-    render(<App/>)
+    app = render(<App/>)
   })
 
   Then(/^all inputs should be enabled$/, () => {
-    render(<App/>)
-    const inputs = screen.getAllByTestId("formInput")
-
+    
+    // const inputs = screen.getByClassName("formInput")
+    const inputs = app.container.querySelectorAll("formInput")
     inputs.forEach(input => {
       expect(input).not.toHaveClass('input is-disabled')
     })
   })
 
   Then(/^all buttons should be enabled$/, () => {
-    render(<App/>)
-    const buttons = screen.getAllByTestId("formButton")
-
+    // render(<App/>)
+    // const buttons = screen.getByClassName("formButton")
+    const buttons = app.container.querySelectorAll("formButton")
     buttons.forEach(button => {
       expect(button).not.toHaveClass('input is-disabled')
     })
