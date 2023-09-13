@@ -1,37 +1,44 @@
 import React from 'react'
 
-export function UnsuccesfullValidation ({ sectionType, error }) {
+export function UnsuccesfullValidation ({ sectionType, error, errorLocation }) {
   if (error === false) return null
   const dataTestId = sectionType + "Message"
-  // let error = false
-  //   switch (sectionType) {
-  //     case 'username':
-  //       if (value.length > 10) {
-  //         error = true
-  //       }
-  //       break;
-
-  //     case 'name':
-        
-  //       break;
-
-  //     case 'surname':
-        
-  //       break;
-
-  //     case 'country':
-        
-  //       break;
-    
-  //     default:
-  //       break;
-  //   }
-
-    
-
+  if (errorLocation === sectionType) {
     return (
-        <div className='sectionMessage' data-testid={dataTestId}>
-          {error}
-        </div>
+      <div className='sectionMessage' data-testid={dataTestId}>
+        {error}
+      </div>
     )
+  }
+    
+}
+
+export function nameValidation ({ error }) {
+  if (error === false) return null
+
+  return (
+    <div className='sectionMessage' data-testid="nameMessage">
+      {error}
+    </div>
+  )  
+}
+
+export function surnameValidation ({ error }) {
+  if (error === false) return null
+
+  return (
+    <div className='sectionMessage' data-testid="surnameMessage">
+      {error}
+    </div>
+  )  
+}
+
+export function idValidation ({ error }) {
+  if (error === false) return null
+
+  return (
+    <div className='sectionMessage' data-testid="idMessage">
+      {error}
+    </div>
+  )  
 }

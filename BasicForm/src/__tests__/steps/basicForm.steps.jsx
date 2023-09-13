@@ -146,5 +146,20 @@ export const basicFormSteps = ({
     const sectionMessage = screen.getByTestId(testId)
     expect(sectionMessage).not.toBe(false)
   });
+
+  Then(/^the ['"](.*)['"] section should show a list$/, (sectionName) => {
+    const selectElement = screen.getByRole('combobox', {name: '' })
+    expect(screen.getByRole('option', { name: 'SPAIN'}).selected).toBe(false)
+    expect(screen.getByRole('option', { name: 'JAPAN'}).selected).toBe(false)
+  })
+
+  And(/^the user selects ['"](.*)['"]$/, (selection) => {
+    // const section = sectionUsed
+    // fireEvent.change(section, {target: {value: inputWritten}})
+
+    const selectElement = screen.getByRole('combobox', {name: '' })
+    fireEvent.change(selectElement, {target: { value: selection}})
+  })
+
 }
 
