@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import './App.css'
 import { UnsuccesfullValidation } from './components/UnsuccesfullValidation'
-import { FieldForm } from './components/Fields'
+import { FieldForm } from './components/Field'
 function App() {
 
   const [username, setUsername] = useState('')
@@ -12,22 +12,22 @@ function App() {
   const [error, setError] = useState(null)
   const [errorLocation, setErrorLocation] = useState('')
 
-  const checkUsername = (input) => {
-    const newUsername = input.target.value
-
-    setUsername(newUsername)
-
-    if (newUsername !== newUsername.toUpperCase()) {
+  const checkUsername = (usernameInput) => {
+    let validation = false
+    setUsername(usernameInput)
+    if (usernameInput !== usernameInput.toUpperCase()) {
       setError("Username must be written in capital letters")
       setErrorLocation('username')
-    } else if (newUsername.length > 10){
+    } else if (usernameInput.length > 10){
       setError("Username can't surpass 10 characters")
-    } else if (newUsername === "") {
+    } else if (usernameInput === "") {
       setError("Username can't be empty")
     } else {
       setError(false)
+      validation = true
     }
-    
+
+    return validation
   }
 
   const checkPreviousInput = (inputName) => {
@@ -37,20 +37,22 @@ function App() {
     } 
   }
 
-  const checkName = (input) => {
-    const newUsername = username
-    const newName = input.target.value
-    setName(newName)
-
-    if (newName === '') {
+  const checkName = (nameInput) => {
+    let validation = false
+    setName(nameInput)
+    console.log(username)
+    if (nameInput === '') {
       setError(false)
-    } else if (newUsername.includes(newName)) {
+    } else if (nameInput.includes(username)) {
       setError("Username must not contain the name")
-      console.log(newName)
+      console.log("nameinput", nameInput)
     } 
       else {
       setError(false)
+      validation = true
     }
+
+    return validation
   }
 
   const validateSpanishId = (id) => {
@@ -121,13 +123,21 @@ function App() {
       <header className="header" data-testid="header">
         <form className="form" data-testid="form">
           <div className='formBody'>
-            <FieldForm sectionType={'username'} validatingFunction={checkUsername}/>
+            <FieldForm 
+              validatingFunction={checkUsername} 
+              sectionType={"username"} 
+              placeholderInput={"JAX99"} 
+              inputLength={10}/>
 
-            <div className='section'>
-              <label className='formLabel'>Username</label>
-              <input data-testid="usernameInput" className="formInput" placeholder="JR09" onChange={checkUsername} maxLength={10}/>
-            </div>
             <UnsuccesfullValidation value={username} sectionType={'username'} error={error} errorLocation={errorLocation}/>
+            <FieldForm 
+              validatingFunction={checkName} 
+              sectionType={"name"} 
+              placeholderInput={"JAVIER"} 
+              inputLength={"none"}/>
+
+            
+              
             <div className='section firstName'>
               <label className='formLabel'>First Name</label>
               <input data-testid="nameInput" className='formInput' placeholder="JORGE" onChange={checkName} onFocus={checkPreviousInput}/>
@@ -147,6 +157,13 @@ function App() {
               </select>
               
             </div>
+
+            <FieldForm 
+              validatingFunction={checkName} 
+              sectionType={"country"} 
+              placeholderInput={"JAVIER"} 
+              inputLength={"none"}/>
+              
             <div className='section id'>
               <label className='formLabel'>ID</label>
               <input data-testid="idInput" className='formInput' placeholder="12345678D" onChange={checkId}/>
@@ -170,3 +187,10 @@ function App() {
 }
 
 export default App
+
+
+
+{/* <div className='section'>
+<label className='formLabel'>Username</label>
+<input data-testid="usernameInput" className="formInput" placeholder="JR09" onChange={checkUsername} maxLength={10}/>
+</div> */}

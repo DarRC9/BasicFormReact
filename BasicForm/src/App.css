@@ -41,10 +41,6 @@ main {
   margin: 5px;
   padding-top: 10px;
 }
-.formInput:hover {
-  border-color: rgb(125, 125, 236);
-  
-}
 
 .formLabel {
   width: 20%;
@@ -54,12 +50,12 @@ main {
 
 .formInput {
   width: 80%;
-  border: dashed 1px white;
+  border: solid dashed;
   border-radius: 5px;
 }
 
 .formInput.has-error {
-  border-color: red;
+   border: dashed 1px red;
 }
 
 .sectionMessage {
@@ -67,8 +63,6 @@ main {
   font-size: 12px;
   font-weight: lighter;
   margin: 5px;
-  
-
 }
 
 .submitButton,
