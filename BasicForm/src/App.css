@@ -69,3 +69,8 @@ main {
 .clearButton {
   margin-top: 10px;
 }
+
+.submitMessage {
+  text-align: center;
+  align-items: center;
+}

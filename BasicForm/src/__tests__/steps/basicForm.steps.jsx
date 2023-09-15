@@ -103,12 +103,12 @@ export const basicFormSteps = ({
     })
   })
 
-  Then(/^all buttons should be enabled$/, () => {
+  Then(/^all buttons should be disabled$/, () => {
     // render(<App/>)
     // const buttons = screen.getByClassName("formButton")
     const buttons = app.container.querySelectorAll("formButton")
     buttons.forEach(button => {
-      expect(button).not.toHaveClass('input is-disabled')
+      expect(button.disabled).toBe(true)
     })
   })
 
@@ -117,6 +117,7 @@ export const basicFormSteps = ({
     const section = screen.getByTestId(testId)
     sectionUsed = section
     fireEvent.click(section)
+    
   })
 
   When(/^the user selects the "(.*)" section$/, (sectionName) => {
@@ -126,10 +127,20 @@ export const basicFormSteps = ({
     fireEvent.click(section)
   })
 
+  When(/^the user deselects the ['"](.*)['"] section$/, (sectionName) => {
+    const testId = getSectionInput(sectionName)
+    const section = screen.getByTestId(testId)
+    fireEvent.blur(section)
+  })
+
   Then(/^the ['"](.*)['"] section should show an error$/, (sectionName) => {
-    const testId = getSectionMessage(sectionName)
-    const sectionMessage = screen.getByTestId(testId)
-    expect(sectionMessage).not.toBe(false)
+    // const testId = getSectionMessage(sectionName)
+    // const sectionMessage = screen.getByTestId(testId)
+    // expect(sectionMessage).not.toBe(false)
+
+    const testId = getSectionInput(sectionName)
+    const input = screen.getByTestId(testId)
+    expect(input).toHaveClass("formInput has-error")
   })
 
   When(/^the user types ['"](.*)['"]$/, (inputWritten) => {
@@ -142,9 +153,9 @@ export const basicFormSteps = ({
   });
 
   Then(/the app should warn the user$/, () => {
-    const testId = getSectionMessage("username")
-    const sectionMessage = screen.getByTestId(testId)
-    expect(sectionMessage).not.toBe(false)
+    const testId = getSectionInput("username")
+    const input = screen.getByTestId(testId)
+    expect(input).toHaveClass("formInput has-error")
   });
 
   Then(/^the ['"](.*)['"] section should show a list$/, (sectionName) => {
@@ -160,6 +171,16 @@ export const basicFormSteps = ({
     const selectElement = screen.getByRole('combobox', {name: '' })
     fireEvent.change(selectElement, {target: { value: selection}})
   })
+
+  Then(/^the app should validate the user$/, () => {
+    const validationMessage = screen.getByTestId("validationMessage")
+    expect(validationMessage.textContent).not.toBe(null)
+  })
+
+  Then(/^the "(.*)" button should be enabled$/, () => {
+    const button = screen.getByTestId("submitButton")
+    expect(button.textContent.disabled).toBe(false)
+  });
 
 }
 

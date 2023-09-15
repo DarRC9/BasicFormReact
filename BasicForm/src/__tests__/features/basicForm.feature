@@ -6,13 +6,18 @@ Background:
 Scenario: All inputs should be enabled
     Then all inputs should be enabled
 
-Scenario: All buttons should be enabled
-    Then all buttons should be enabled
+Scenario: All buttons should be disabled
+    Then all buttons should be disabled
 
 # Scenario: All placeholders should be in capital 
 #     Then all placeholders should be in capital
 
 #Scenario: All inputs should be in white
+
+# Scenario: Input error when leaving a section
+#     Given the user selects the 'username' section
+#     When the user deselects the 'name' section
+#     Then the 'username' section should show an error
     
 
 Scenario: Input error when leaving a section incompleted
@@ -34,7 +39,7 @@ Scenario: User is unable to input a username that includes name or surname
     country: SPAIN
     id: 12345678S
     """
-    Then the app should warn the user
+    Then the 'name' section should show an error
 
 Scenario: Show list of countries
     Given the user selects the 'country' section
@@ -65,24 +70,27 @@ Scenario: Every inputted character must be in capital
     """
     Then the app should warn the user 
 
-# Scenario: Succesful verification
-#     Given the user completes the form with the next data
-#     """
-#     username: PEP123
-#     name: PEPE
-#     surname: LOCO
-#     country: SPAIN
-#     id: 12345678S
-#     """
-#     Then the app should validate the user
+Scenario: Succesful verification
+    Given the user completes the form with the next data
+    """
+    username: PEP123
+    name: PEPE
+    surname: LOCO
+    country: SPAIN
+    id: 12345678S
+    """
+    Then the 'submit' button should be enabled
 
-# Scenario: Failed verification
-#     Given the user completes the form with the next data
-#     """
-#     username: PEP123
-#     name: PEPE
-#     surname: LOCO
-#     country: SPAIN
-#     id: 4678S
-#     """
-#     Then the app should warn the user
+Scenario: Succesful verification
+    Given the user completes the form with the next data
+    """
+    username: PEP123
+    name: PEPE
+    surname: LOCO
+    country: SPAIN
+    id: 12345678S
+    """
+    When the users presses the 'submit' button
+    Then the app should validate the user
+
+

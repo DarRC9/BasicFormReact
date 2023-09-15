@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export function FieldForm ({ validatingFunction, sectionType, placeholderInput, inputLength }) {
+export function FieldForm ({ validatingFunction, sectionType, placeholderInput, inputLength, value, blurFunction }) {
   const [className, setClassName] = useState("formInput")
 
   const inputDataTestId = sectionType + "Input"
@@ -9,22 +9,30 @@ export function FieldForm ({ validatingFunction, sectionType, placeholderInput, 
   const handleChange = (input) => {
     const value = input.target.value
     const isValid = validatingFunction(value)
-    console.log(isValid)
+
     setClassName(`formInput ${isValid ? '' : 'has-error'}` )
   }
+
+  const handleBlur = (input) => {
+    const value = input.target.value
+    const isValid = blurFunction(value)
+    console.log("blur", isValid)
+    setClassName(`formInput ${isValid ? '' : 'has-error'}` )
+  }
+
 
   if (sectionType !== "country") {
     return (
       <div className='section'>
           <label className='formLabel'>{labelName}</label>
-          <input data-testid={inputDataTestId} className={className} placeholder={placeholderInput} onChange={handleChange} maxLength={inputLength}/>
+          <input data-testid={inputDataTestId} className={className} placeholder={placeholderInput} onChange={handleChange} maxLength={inputLength} onBlur={handleBlur}/>
       </div>
     )
   } else {
     return (
       <div className='section'>
       <label className='formLabel'>Country</label>
-      <select data-testid={inputDataTestId} className="formInput" name='Country' onChange={validatingFunction}>
+      <select data-testid={inputDataTestId} className="formInput" name='Country' onChange={(input) => validatingFunction(input.target.value)}>
         <option value="SELECT A COUNTRY">SELECT A COUNTRY</option>
         <option value="SPAIN">SPAIN</option>
         <option value="JAPAN">JAPAN</option>

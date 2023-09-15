@@ -1329,7 +1329,7 @@ tbody tr:nth-child(even) button {
 @media (prefers-color-scheme: dark) {
 
   tbody tr:nth-child(even) button {
-  background-color: #1a242f;
+  background-color: #b8c1ca;
   background-color: var(--background-alt);
   }
 }
@@ -1342,7 +1342,7 @@ tbody tr:nth-child(even) button:hover {
 @media (prefers-color-scheme: dark) {
 
   tbody tr:nth-child(even) button:hover {
-  background-color: #202b38;
+  background-color: #161e27;
   background-color: var(--background-body);
   }
 }

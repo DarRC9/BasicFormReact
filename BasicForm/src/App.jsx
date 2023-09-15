@@ -7,10 +7,12 @@ function App() {
 
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
   const [country, setCountry] = useState('')
   const [id, setId] = useState('')
   const [error, setError] = useState(null)
   const [errorLocation, setErrorLocation] = useState('')
+  const [html, setHtml] = useState(null)
 
   const checkUsername = (usernameInput) => {
     let validation = false
@@ -30,28 +32,40 @@ function App() {
     return validation
   }
 
-  const checkPreviousInput = (inputName) => {
+  const checkInputValue = (input) => {
     const newUsername = username
     if (newUsername === '') {
       setError("Username can't be empty")
     } 
   }
 
-  const checkName = (nameInput) => {
+  const checkName = (nameInput, username) => {
     let validation = false
     setName(nameInput)
-    console.log(username)
     if (nameInput === '') {
       setError(false)
-    } else if (nameInput.includes(username)) {
-      setError("Username must not contain the name")
-      console.log("nameinput", nameInput)
+    } else if (username.includes(nameInput)) {
+      setError("Username must not contain name")
     } 
       else {
       setError(false)
       validation = true
     }
+    return validation
+  }
 
+  const checkSurname = (surnameInput, username) => {
+    let validation = false
+    setSurname(surnameInput)
+    if (surnameInput === '') {
+      setError(false)
+    } else if (username.includes(surnameInput)) {
+      setError("Username must not contain surname")
+    } 
+      else {
+      setError(false)
+      validation = true
+    }
     return validation
   }
 
@@ -75,47 +89,67 @@ function App() {
     return validation
   }
 
-  const checkId = (input) => {
-    const id = input.target.value
-    const newCountry = country
-    // if (newCountry === "SPAIN") {
-    //   let validate = validateSpanishId(id)
-    //   if (validate === false) {
-    //     setError("Invalid ID, check country or ID")
-    //   }
-    // } else if (newCountry === "JAPAN") {
-    //   let validate = validateJapaneseId(id)
-    // }
+  const checkId = (idInput, country) => {
+    setId(idInput)
     let validation
-    switch (newCountry) {
+    switch (country) {
       case "SPAIN":
-        validation = validateSpanishId(id)
+        validation = validateSpanishId(idInput)
         break;
       case "JAPAN":
-        validation = validateJapaneseId(id)
+        validation = validateJapaneseId(idInput)
         break;
       default:
         validation = null
         break;        
     }
-    console.log(validation)
     if (validation === false) {
       setError("Invalid ID, check country or ID")
       setErrorLocation('id')
     } else if (validation === true) {
       setError(false)
     }
+    return validation
   }
 
-
-
-  const getCountry = (input) => {
-    const country = input.target.value
-    setCountry(country)
-    // if (id !== ''){
-    //   checkId(id)
-    // }
+  const getCountry = (countryInput) => {
+    let validation = false
+    setCountry(countryInput)
+    if (countryInput !== "SELECT A COUNTRY") {
+      validation = true
+    }
+    return validation
   }
+
+  const checkForm = (username, name, surname, country, id, error) => {
+    let validation = true
+    if (username !== '' 
+        && name !== ''
+        && surname !== ''
+        && country !== ''
+        && id !== ''
+        && error === false) {
+          validation = false
+        }
+    return validation
+  }
+
+  const handleEmptyInput = (inputValue) => {
+    let isValid = true
+    if (inputValue === '') {
+      isValid = false
+    } 
+    return isValid
+  }
+
+  function renderHtml () {
+    return(
+        <div className='submitMessage' data-testid="validationMessage">
+        Data succesfully sent
+    </div>
+    )
+  }
+
 
   return (
     <div className='page' data-testid="page">
@@ -127,54 +161,52 @@ function App() {
               validatingFunction={checkUsername} 
               sectionType={"username"} 
               placeholderInput={"JAX99"} 
-              inputLength={10}/>
+              inputLength={10}
+              blurFunction={handleEmptyInput}
+            />
 
             <UnsuccesfullValidation value={username} sectionType={'username'} error={error} errorLocation={errorLocation}/>
             <FieldForm 
-              validatingFunction={checkName} 
+              validatingFunction={(value) => checkName(value, username)} 
               sectionType={"name"} 
               placeholderInput={"JAVIER"} 
-              inputLength={"none"}/>
+              inputLength={"none"}
+              value={username}
+              blurFunction={handleEmptyInput}
+            />
 
-            
-              
-            <div className='section firstName'>
-              <label className='formLabel'>First Name</label>
-              <input data-testid="nameInput" className='formInput' placeholder="JORGE" onChange={checkName} onFocus={checkPreviousInput}/>
-            </div>
             <UnsuccesfullValidation value={username} sectionType={'name'} error={error} errorLocation={errorLocation}/>
-            <div className='section surname'>
-              <label className='formLabel'>Surname</label>
-              <input data-testid="surnameInput" className='formInput' placeholder="RAMIREZ" />
-            </div>
-            <UnsuccesfullValidation value={username} sectionType={'surname'} error={error} errorLocation={errorLocation}/>
-            <div className='section country'>
-              <label className='formLabel'>Country</label>
-              <select data-testid="countryInput" className="formInput" name='Country' onChange={getCountry}>
-                <option value="SELECT A COUNTRY">SELECT A COUNTRY</option>
-                <option value="SPAIN">SPAIN</option>
-                <option value="JAPAN">JAPAN</option>
-              </select>
-              
-            </div>
-
             <FieldForm 
-              validatingFunction={checkName} 
+              validatingFunction={(value) => checkSurname(value, username)} 
+              sectionType={"surname"} 
+              placeholderInput={"TORRES"} 
+              inputLength={"none"}
+              value={username}
+              blurFunction={handleEmptyInput}
+            />  
+            <UnsuccesfullValidation value={username} sectionType={'surname'} error={error} errorLocation={errorLocation}/>
+
+            <FieldForm  
+              validatingFunction={getCountry}
               sectionType={"country"} 
-              placeholderInput={"JAVIER"} 
               inputLength={"none"}/>
               
-            <div className='section id'>
-              <label className='formLabel'>ID</label>
-              <input data-testid="idInput" className='formInput' placeholder="12345678D" onChange={checkId}/>
-            </div>
+            
+            <FieldForm 
+              validatingFunction={(value) => checkId(value, country)} 
+              sectionType={"id"} 
+              placeholderInput={"12345678D"} 
+              inputLength={"none"}
+              value={country}
+              blurFunction={handleEmptyInput}
+            />  
             <UnsuccesfullValidation value={username} sectionType={'id'} error={error} errorLocation={errorLocation}/>
-     
           </div>
-          <div className='section button'>
-            <button data-testid="formButton" className='submitButton' type='submit'>Sign Up</button>
-            <button data-testid="formButton" className='clearButton' type='clear'>Clear</button>
+          <div className='section'>
+            <button disabled={checkForm(username, name, surname, country, id, error)} onClick={(() => setHtml(renderHtml()))} data-testid="submitButton" className='formButton' value="Submit" type='submit' >Sign Up</button>
+            <button disabled={checkForm(username, name, surname, country, id, error)} data-testid="clearButton" className='formButton' value="Clear" type='clear'>Clear</button>
           </div>
+          {html}
           
         </form>
       </header>
