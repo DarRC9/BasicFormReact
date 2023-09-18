@@ -10,35 +10,4 @@ export function UnsuccesfullValidation ({ sectionType, error, errorLocation }) {
       </div>
     )
   }
-    
-}
-
-export function nameValidation ({ error }) {
-  if (error === false) return null
-
-  return (
-    <div className='sectionMessage' data-testid="nameMessage">
-      {error}
-    </div>
-  )  
-}
-
-export function surnameValidation ({ error }) {
-  if (error === false) return null
-
-  return (
-    <div className='sectionMessage' data-testid="surnameMessage">
-      {error}
-    </div>
-  )  
-}
-
-export function idValidation ({ error }) {
-  if (error === false) return null
-
-  return (
-    <div className='sectionMessage' data-testid="idMessage">
-      {error}
-    </div>
-  )  
 }

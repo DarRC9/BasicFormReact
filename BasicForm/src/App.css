@@ -63,6 +63,7 @@ main {
   font-size: 12px;
   font-weight: lighter;
   margin: 5px;
+
 }
 
 .submitButton,
@@ -71,6 +72,11 @@ main {
 }
 
 .submitMessage {
+  border: solid white 2px;
   text-align: center;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
 }
+
