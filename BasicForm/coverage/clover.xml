@@ -1,163 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1695035413423" clover="3.2.0">
-  <project timestamp="1695035413423" name="All files">
-    <metrics statements="140" coveredstatements="128" conditionals="52" coveredconditionals="43" methods="21" coveredmethods="20" elements="213" coveredelements="191" complexity="0" loc="140" ncloc="140" packages="2" files="4" classes="4"/>
+<coverage generated="1695293040093" clover="3.2.0">
+  <project timestamp="1695293040093" name="All files">
+    <metrics statements="144" coveredstatements="139" conditionals="63" coveredconditionals="59" methods="24" coveredmethods="23" elements="231" coveredelements="221" complexity="0" loc="144" ncloc="144" packages="2" files="6" classes="6"/>
     <package name="src">
-      <metrics statements="111" coveredstatements="99" conditionals="42" coveredconditionals="34" methods="15" coveredmethods="14"/>
-      <file name="App.jsx" path="H:\Travelport\BasicFormReact\BasicForm\src\App.jsx">
-        <metrics statements="111" coveredstatements="99" conditionals="42" coveredconditionals="34" methods="15" coveredmethods="14"/>
+      <metrics statements="36" coveredstatements="34" conditionals="7" coveredconditionals="7" methods="9" coveredmethods="8"/>
+      <file name="App.jsx" path="C:\Users\daril\Documents\GitHub\BasicFormReact\BasicForm\src\App.jsx">
+        <metrics statements="36" coveredstatements="34" conditionals="7" coveredconditionals="7" methods="9" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="9" count="75" type="stmt"/>
-        <line num="10" count="75" type="stmt"/>
-        <line num="11" count="75" type="stmt"/>
-        <line num="12" count="75" type="stmt"/>
-        <line num="13" count="75" type="stmt"/>
-        <line num="14" count="75" type="stmt"/>
-        <line num="15" count="75" type="stmt"/>
-        <line num="16" count="75" type="stmt"/>
-        <line num="18" count="75" type="stmt"/>
-        <line num="19" count="11" type="stmt"/>
-        <line num="20" count="11" type="stmt"/>
-        <line num="21" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="22" count="2" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="24" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="29" count="7" type="stmt"/>
-        <line num="30" count="7" type="stmt"/>
-        <line num="32" count="11" type="stmt"/>
-        <line num="35" count="75" type="stmt"/>
-        <line num="36" count="10" type="stmt"/>
-        <line num="37" count="10" type="stmt"/>
-        <line num="39" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="42" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="44" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="48" count="7" type="stmt"/>
-        <line num="49" count="7" type="stmt"/>
-        <line num="51" count="10" type="stmt"/>
-        <line num="54" count="75" type="stmt"/>
-        <line num="55" count="10" type="stmt"/>
-        <line num="56" count="10" type="stmt"/>
-        <line num="57" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
-        <line num="60" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="61" count="1" type="stmt"/>
-        <line num="62" count="8" type="cond" truecount="2" falsecount="0"/>
-        <line num="63" count="1" type="stmt"/>
-        <line num="66" count="7" type="stmt"/>
-        <line num="67" count="7" type="stmt"/>
-        <line num="69" count="10" type="stmt"/>
-        <line num="72" count="75" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="74" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
-        <line num="77" count="0" type="cond" truecount="0" falsecount="5"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="81" count="1" type="stmt"/>
-        <line num="84" count="75" type="stmt"/>
-        <line num="85" count="1" type="stmt"/>
-        <line num="86" count="1" type="cond" truecount="1" falsecount="2"/>
-        <line num="87" count="0" type="stmt"/>
-        <line num="89" count="1" type="stmt"/>
-        <line num="92" count="75" type="stmt"/>
-        <line num="93" count="10" type="stmt"/>
-        <line num="95" count="10" type="cond" truecount="3" falsecount="0"/>
-        <line num="97" count="1" type="stmt"/>
-        <line num="98" count="1" type="stmt"/>
-        <line num="100" count="1" type="stmt"/>
-        <line num="101" count="1" type="stmt"/>
-        <line num="103" count="8" type="stmt"/>
-        <line num="104" count="8" type="stmt"/>
-        <line num="106" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="107" count="2" type="stmt"/>
-        <line num="108" count="2" type="stmt"/>
-        <line num="109" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="110" count="8" type="stmt"/>
-        <line num="112" count="10" type="stmt"/>
-        <line num="115" count="75" type="stmt"/>
-        <line num="116" count="10" type="stmt"/>
-        <line num="117" count="10" type="stmt"/>
-        <line num="118" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="119" count="10" type="stmt"/>
-        <line num="121" count="10" type="stmt"/>
-        <line num="124" count="75" type="stmt"/>
-        <line num="125" count="75" type="stmt"/>
-        <line num="126" count="75" type="cond" truecount="7" falsecount="0"/>
-        <line num="132" count="9" type="stmt"/>
-        <line num="134" count="75" type="stmt"/>
-        <line num="137" count="75" type="stmt"/>
-        <line num="138" count="4" type="stmt"/>
-        <line num="139" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="140" count="4" type="stmt"/>
-        <line num="142" count="4" type="stmt"/>
-        <line num="145" count="75" type="stmt"/>
-        <line num="146" count="1" type="stmt"/>
-        <line num="147" count="1" type="stmt"/>
-        <line num="150" count="75" type="stmt"/>
-        <line num="151" count="0" type="stmt"/>
-        <line num="152" count="0" type="stmt"/>
-        <line num="153" count="0" type="stmt"/>
-        <line num="154" count="0" type="stmt"/>
-        <line num="155" count="0" type="stmt"/>
-        <line num="156" count="0" type="stmt"/>
-        <line num="157" count="0" type="stmt"/>
-        <line num="177" count="10" type="stmt"/>
-        <line num="187" count="10" type="stmt"/>
-        <line num="204" count="10" type="stmt"/>
-        <line num="226" count="23" type="stmt"/>
+        <line num="10" count="88" type="stmt"/>
+        <line num="11" count="88" type="stmt"/>
+        <line num="12" count="88" type="stmt"/>
+        <line num="13" count="88" type="stmt"/>
+        <line num="14" count="88" type="stmt"/>
+        <line num="15" count="88" type="stmt"/>
+        <line num="16" count="88" type="stmt"/>
+        <line num="19" count="88" type="stmt"/>
+        <line num="20" count="88" type="stmt"/>
+        <line num="21" count="88" type="cond" truecount="7" falsecount="0"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="29" count="88" type="stmt"/>
+        <line num="32" count="88" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="88" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="42" count="88" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="46" count="4" type="stmt"/>
+        <line num="47" count="4" type="stmt"/>
+        <line num="48" count="4" type="stmt"/>
+        <line num="49" count="4" type="stmt"/>
+        <line num="60" count="14" type="stmt"/>
+        <line num="71" count="11" type="stmt"/>
+        <line num="82" count="11" type="stmt"/>
+        <line num="101" count="11" type="stmt"/>
+        <line num="122" count="29" type="stmt"/>
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="29" coveredstatements="29" conditionals="10" coveredconditionals="9" methods="6" coveredmethods="6"/>
-      <file name="Field.jsx" path="H:\Travelport\BasicFormReact\BasicForm\src\components\Field.jsx">
-        <metrics statements="19" coveredstatements="19" conditionals="7" coveredconditionals="6" methods="4" coveredmethods="4"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="375" type="stmt"/>
-        <line num="4" count="379" type="stmt"/>
-        <line num="5" count="379" type="stmt"/>
-        <line num="7" count="379" type="stmt"/>
-        <line num="8" count="379" type="stmt"/>
-        <line num="10" count="379" type="stmt"/>
-        <line num="11" count="41" type="stmt"/>
-        <line num="12" count="41" type="stmt"/>
-        <line num="13" count="41" type="stmt"/>
-        <line num="14" count="41" type="cond" truecount="2" falsecount="0"/>
-        <line num="17" count="379" type="stmt"/>
-        <line num="18" count="4" type="stmt"/>
-        <line num="19" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="20" count="4" type="stmt"/>
-        <line num="21" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="25" count="379" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="75" type="stmt"/>
-        <line num="36" count="10" type="stmt"/>
+      <metrics statements="108" coveredstatements="105" conditionals="56" coveredconditionals="52" methods="15" coveredmethods="15"/>
+      <file name="Constants.js" path="C:\Users\daril\Documents\GitHub\BasicFormReact\BasicForm\src\components\Constants.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="734" type="stmt"/>
       </file>
-      <file name="UnsuccesfullValidation.jsx" path="H:\Travelport\BasicFormReact\BasicForm\src\components\UnsuccesfullValidation.jsx">
-        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="Field.jsx" path="C:\Users\daril\Documents\GitHub\BasicFormReact\BasicForm\src\components\Field.jsx">
+        <metrics statements="29" coveredstatements="29" conditionals="9" coveredconditionals="8" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="3" count="300" type="stmt"/>
-        <line num="4" count="300" type="cond" truecount="1" falsecount="0"/>
-        <line num="5" count="148" type="stmt"/>
-        <line num="6" count="148" type="cond" truecount="1" falsecount="0"/>
-        <line num="7" count="6" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="440" type="stmt"/>
+        <line num="6" count="589" type="stmt"/>
+        <line num="7" count="589" type="stmt"/>
+        <line num="9" count="589" type="stmt"/>
+        <line num="10" count="589" type="stmt"/>
+        <line num="12" count="589" type="stmt"/>
+        <line num="13" count="55" type="stmt"/>
+        <line num="14" count="55" type="stmt"/>
+        <line num="15" count="55" type="stmt"/>
+        <line num="16" count="55" type="stmt"/>
+        <line num="17" count="55" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="589" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="22" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="25" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="589" type="stmt"/>
+        <line num="31" count="589" type="stmt"/>
+        <line num="32" count="145" type="stmt"/>
+        <line num="33" count="435" type="stmt"/>
+        <line num="37" count="145" type="cond" truecount="1" falsecount="0"/>
+        <line num="38" count="145" type="stmt"/>
+        <line num="43" count="589" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="117" type="cond" truecount="1" falsecount="0"/>
+        <line num="55" count="117" type="stmt"/>
       </file>
-      <file name="ValidationMessage.jsx" path="H:\Travelport\BasicFormReact\BasicForm\src\components\ValidationMessage.jsx">
-        <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="FieldValidations.js" path="C:\Users\daril\Documents\GitHub\BasicFormReact\BasicForm\src\components\FieldValidations.js">
+        <metrics statements="69" coveredstatements="67" conditionals="45" coveredconditionals="43" methods="8" coveredmethods="8"/>
+        <line num="1" count="14" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="3" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="11" type="cond" truecount="4" falsecount="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="10" type="cond" truecount="3" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="18" count="11" type="stmt"/>
+        <line num="19" count="11" type="stmt"/>
+        <line num="20" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="9" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="30" count="11" type="stmt"/>
+        <line num="31" count="11" type="stmt"/>
+        <line num="32" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="9" type="cond" truecount="1" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="39" count="11" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="44" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="47" count="3" type="cond" truecount="6" falsecount="0"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="54" count="4" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="60" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="64" count="4" type="stmt"/>
+        <line num="67" count="11" type="stmt"/>
+        <line num="68" count="11" type="stmt"/>
+        <line num="69" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="70" count="8" type="cond" truecount="2" falsecount="1"/>
+        <line num="72" count="4" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="75" count="4" type="stmt"/>
+        <line num="76" count="4" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="80" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="82" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="85" count="11" type="stmt"/>
+        <line num="88" count="88" type="stmt"/>
+        <line num="89" count="8" type="stmt"/>
+        <line num="90" count="8" type="cond" truecount="0" falsecount="1"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="93" count="8" type="stmt"/>
+        <line num="96" count="352" type="stmt"/>
+        <line num="97" count="4" type="stmt"/>
+        <line num="98" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="99" count="4" type="stmt"/>
+        <line num="101" count="4" type="stmt"/>
+      </file>
+      <file name="UnsuccesfullValidation.jsx" path="C:\Users\daril\Documents\GitHub\BasicFormReact\BasicForm\src\components\UnsuccesfullValidation.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="3" count="75" type="stmt"/>
-        <line num="5" count="75" type="cond" truecount="1" falsecount="0"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="3" count="472" type="stmt"/>
+        <line num="4" count="472" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="472" type="stmt"/>
+        <line num="6" count="472" type="stmt"/>
+      </file>
+      <file name="ValidationMessage.jsx" path="C:\Users\daril\Documents\GitHub\BasicFormReact\BasicForm\src\components\ValidationMessage.jsx">
+        <metrics statements="4" coveredstatements="3" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="88" type="stmt"/>
+        <line num="5" count="88" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="0" type="stmt"/>
       </file>
     </package>
   </project>

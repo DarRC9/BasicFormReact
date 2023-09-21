@@ -1,170 +1,161 @@
-Feature: Form
-
-Background: 
-    Given the user opens the app
+Feature: Basic user data form:
+        Form fuction
+        ___
+        Username [                ]( Max 10 characters )
+        Name     [                ]
+        Surname  [                ]
+        Country  [ Select country ]
+        ID       [                ]  Validate Spanish and Japanese ID
+                [ Submit ] [ Clear ]
+        Submit -> New page with a message.  If any info is not valid the button should be disabled.
+        Clear -> Clears all text inputs and changes to deafult value of the list.
+        ___
+        -Any invalid will make the textbox to change the border color to "red" (field error)
+        -Every character must be in capital letters
+        -Name must not be included in Username
+Background:
+    Given the user opens the basic user data form
 
 Scenario: All inputs should be enabled
     Then all inputs should be enabled
 
-Scenario: All buttons should be disabled
-    Then all buttons should be disabled
+Scenario: Submit button should be disabled
+    Then submit button should be disabled
 
-Scenario: All placeholders should be in capital 
-    Then all placeholders should be in capital
+Scenario: All placeholders should be in capital letters
+    Then all placeholders should be in capital letters
 
 Scenario: All inputs should be without error
     Then all inputs should be without error
+#change to fields
+Scenario Outline: Field error when leaving a textbox field empty
+    Given the user clicks the "<field>" field
+    When the user clicks out of the "<field>" field
+    Then the "<field>" field should show an error
+    Examples:
+        | field    |
+        | username |
+        | name     |
+        | surname  |
+        | id       |
 
-Scenario: Input error when leaving username section empty
-    Given the user selects the 'username' section
-    When the user deselects the 'username' section
-    Then the 'username' section should show an error
+Scenario: Field error when user inputs a username longer than 10 characters
+    Given the user clicks the "username" field
+    When the user types "PEPELOQUETE" inside the "username" field
+    Then the "username" field should show an error
 
-Scenario: Input error when leaving name section empty
-    Given the user selects the 'name' section
-    When the user deselects the 'name' section
-    Then the 'name' section should show an error
+Scenario Outline: Field error when user erases all its previous input
+    Given the user clicks the "<field>" field
+    And the user types "<input>" inside the "<field>" field
+    When the user earases all inputs inside the "<field>" field
+    Then the "<field>" field should show an error
+    Examples:
+        | field    | input     |
+        | username | DA123     |
+        | name     | DARIO     |
+        | surname  | RUA       |
+        | id       | 121212    |
 
-Scenario: Input error when leaving surname section empty
-    Given the user selects the 'surname' section
-    When the user deselects the 'surname' section
-    Then the 'surname' section should show an error
+Scenario Outline: Field error when user inputs lowercase characters
+    Given the user clicks the "<field>" field
+    When the user types "<input>" inside the "<field>" field
+    Then the "<field>" field should show an error
+    Examples:
+        | field    | input     |
+        | username | Dda123    |
+        | name     | Dario     |
+        | surname  | Rua       |
+        | id       | 121212d   |
 
-Scenario: Input error when leaving id section empty
-    Given the user selects the 'id' section
-    When the user deselects the 'id' section
-    Then the 'id' section should show an error
 
-Scenario: User is unable to input a username longer than 10 character
-    Given the user selects the 'username' section
-    When the user types 'PEPELOQUETE'
-    Then the 'username' section should show an error
+# No need to chage the way you test if only is in use one field
 
-Scenario: User types and then remove input from username
-    Given the user selects the 'username' section
-    And the user types 'PEPE123'
-    When the user deletes his input
-    Then the 'username' section should show an error
+Scenario Outline: Field error when user inputs name/surname included in username
+    Given the user clicks the "<field>" field
+    And the user types "<input>" inside the "<field>" field
+    When the user types "<input2>" inside the "<field2>" field
+    Then the "<field2>" field should show an error
+    Examples:
+        | field    | input     | field2    | input2     |
+        | username | DARIO123  | name      | DARIO      |
+        | username | RUA123    | surname   | RUA        |
+        | name     | DARIO     | username  | DARIO123   |
+        | surname  | RUA       | username  | RUA123     |
 
-Scenario: User types and then remove input from name
-    Given the user selects the 'name' section
-    And the user types 'PEPE'
-    When the user deletes his input
-    Then the 'name' section should show an error
+# Scenario Outline: Id validation failed according to the selected country 
+#     Given the user clicks the "<field>" field
+#     And the user selects "<option>" option inside the list
+#     When the user types "<input>" inside the "<field2>" field
+#     Then the "<field2>" field should show an error
+#     Examples:
+#         | field    | option    | field2    | input      |
+#         | country  | SPAIN     | id        | D12121212  |
+#         | country  | JAPAN     | id        | 12121212   |
 
-Scenario: User types and then remove input from surname
-    Given the user selects the 'surname' section
-    And the user types 'LOPEZ'
-    When the user deletes his input
-    Then the 'surname' section should show an error
+Scenario Outline: Id validation failed according to the selected country 
+    Given the user clicks the "country" field
+    And the user selects "<option>" option inside the list
+    When the user types "<input>" inside the "id" field
+    Then the "id" field should show an error
+    Examples:
+        | option    | input      |
+        | SPAIN     | D12121212  |
+        | JAPAN     | 12121212   |
 
-Scenario: User is unable to input lowercase username
-    Given the user completes the form with the next data
-    """
-    username: p123
-    name: PEPE
-    surname: LOCO
-    country: SPAIN
-    id: 12345678S
-    """
-    Then the 'username' section should show an error
+# #id has to have 9 characters, the first 8 being numbers and the last one a letter
 
-Scenario: Every inputted character in username must be uppercase
-    Given the user completes the form with the next data
-    """
-    username: pepe123
-    name: PEPITO
-    surname: LOCO
-    country: SPAIN
-    id: 12345678S
-    """
-    Then the 'username' section should show an error
-    # Then the app should warn the user 
-    
-Scenario: Every inputted character in name must be uppercase
-    Given the user completes the form with the next data
-    """
-    username: PEP123
-    name: pepito
-    surname: LOCO
-    country: SPAIN
-    id: 12345678S
-    """
-    Then the 'name' section should show an error
+# #id has to have 12 characters all being numbers
 
-Scenario: Every inputted character in surname must be uppercase
-    Given the user completes the form with the next data
-    """
-    username: PEP123
-    name: PEPITO
-    surname: guzman
-    country: SPAIN
-    id: 12345678S
-    """
-    Then the 'surname' section should show an error
+# Scenario Outline: Submit button enabled - form completed and all data is valid
+#     Given the user types "<input>" inside the "<field>" field
+#     And the user types "<input2>" inside the "<field2>" field
+#     And the user types "<input3>" inside the "<field3>" field
+#     And the user selects "<option>" option inside the list
+#     And the user types "<input4>" inside the "<field4>" field
+#     Then the "submit" button should be enabled
+#     Examples:
+#         | input  | field    | input2  | field2 | input3 | field3  | option | input4       | field4 |
+#         | DR123  | username | DARIO   | name   | RUA    | surname | SPAIN  | 12345678D    | id     |
+#         | RD321  | username | MARK    | name   | EVANS  | surname | JAPAN  | 123456789012 | id     |
 
-Scenario: User is unable to input a username that includes name
-    Given the user completes the form with the next data
-    """
-    username: PEPE123
-    name: PEPE
-    surname: LOCO
-    country: SPAIN
-    id: 12345678S
-    """
-    Then the 'name' section should show an error
 
-Scenario: User is unable to input a username that includes surname
-    Given the user completes the form with the next data
-    """
-    username: PEPE123
-    name: LOCO
-    surname: PEPE
-    country: SPAIN
-    id: 12345678S
-    """
-    Then the 'surname' section should show an error
+Scenario Outline: Submit button enabled - form completed and all data is valid
+    Given the user types "<input>" inside the "username" field
+    And the user types "<input2>" inside the "name" field
+    And the user types "<input3>" inside the "surname" field
+    And the user selects "<option>" option inside the list
+    And the user types "<input4>" inside the "id" field
+    Then the "submit" button should be enabled
+    Examples:
+        | input  | input2  | input3 | option | input4       |
+        | DR123  | DARIO   | RUA    | SPAIN  | 12345678D    |
+        | RD321  | MARK    | EVANS  | JAPAN  | 123456789012 |
 
-Scenario: Show list of countries
-    Given the user selects the 'country' section
-    Then the 'country' section should show a list 
+# Scenario: Succesful verification
+#     Given the user completes the form with the next data
+#     """
+#     username: PEP123
+#     name: PEPE
+#     surname: LOCO
+#     country: SPAIN
+#     id: 12345678S
+#     """
+#     When the users presses the 'submit' button
+#     Then the app should validate the user
 
-Scenario: Spanish id validation failed
-    Given the user selects the 'country' section 
-    And the user selects 'SPAIN'
-    And the user selects the 'id' section
-    When the user types '12345678SD'
-    Then the 'id' section should show an error
-#id has to have 9 characters, the first 8 being numbers and the last one a letter
 
-Scenario: Japanese id validation failed
-    Given the user selects the 'country' section 
-    And the user selects 'JAPAN'
-    And the user selects the 'id' section
-    When the user types '1234567890' 
-    Then the 'id' section should show an error
-#id has to have 12 characters all being numbers
-Scenario: Valid data
-    Given the user completes the form with the next data
-    """
-    username: PEP123
-    name: PEPE
-    surname: LOCO
-    country: JAPAN
-    id: 123456789012
-    """
-    Then the submit button should be enabled
-
-Scenario: Succesful verification
-    Given the user completes the form with the next data
-    """
-    username: PEP123
-    name: PEPE
-    surname: LOCO
-    country: SPAIN
-    id: 12345678S
-    """
-    When the users presses the 'submit' button
-    Then the app should validate the user
-
+Scenario Outline: Claer button - form is cleared
+    Given the user types "<input>" inside the "username" field
+    And the user types "<input2>" inside the "name" field
+    And the user types "<input3>" inside the "surname" field
+    And the user selects "<option>" option inside the list
+    And the user types "<input4>" inside the "id" field
+    And the user presses the "clear" button
+    Then the form should be cleared
+    Examples:
+        | input  | input2  | input3 | option | input4       |
+        | DR123  | DARIO   | RUA    | SPAIN  | 12345678D    |
+        | RD321  | MARK    | EVANS  | JAPAN  | 123456789012 |
+        | ADADA  | LOL     | MALO   | SPAIN  | 1234D12      |
+        | 34344  | JUL     | TORR   | JAPAN  | 1234DADAD    |
 

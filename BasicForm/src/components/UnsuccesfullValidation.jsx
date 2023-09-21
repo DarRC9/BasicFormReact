@@ -1,13 +1,12 @@
 import React from 'react'
 
-export function UnsuccesfullValidation ({ sectionType, error, errorLocation }) {
+export function UnsuccesfullValidation ({ fieldName, error}) {
   if (error === false) return null
-  const dataTestId = sectionType + "Message"
-  if (errorLocation === sectionType) {
+  const dataTestId = fieldName + "Message"
     return (
       <div className='sectionMessage' data-testid={dataTestId}>
         {error}
       </div>
     )
-  }
+  
 }

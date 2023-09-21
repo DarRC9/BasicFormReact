@@ -5,24 +5,7 @@ import '@testing-library/jest-dom'
 import  App  from '../../App.jsx'
 
 const getSectionInput = (sectionName) => {
-  let testId
-    switch (sectionName) {
-      case "username":
-        testId = "usernameInput"
-        break;
-      case "name":
-        testId = "nameInput"
-        break;
-      case "surname":
-        testId = "surnameInput"
-        break;
-      case "id":
-        testId = "idInput"
-        break;
-      default:
-        testId = "countryInput"
-        break;
-    }
+  const testId = sectionName + "Input"
     return testId
 }
 
@@ -88,9 +71,9 @@ export const basicFormSteps = ({
 }) => {
 
   let app
-  let sectionUsed
+  let fieldUsed
 
-  Given(/^the user opens the app$/, () => {
+  Given(/^the user opens the basic user data form$/, () => {
     app = render(<App/>)
   })
 
@@ -101,14 +84,12 @@ export const basicFormSteps = ({
     })
   })
 
-  Then(/^all buttons should be disabled$/, () => {
-    const buttons = app.container.querySelectorAll("formButton")
-    buttons.forEach(button => {
-      expect(button.disabled).toBe(true)
-    })
+  Then(/^submit button should be disabled$/, () => {
+    const submitButton = screen.getByTestId("submitButton")
+    expect(submitButton.disabled).toBe(true)
   })
 
-  Then('all placeholders should be in capital', () => {
+  Then(/^all placeholders should be in capital letters$/, () => {
     const inputs = app.container.querySelectorAll("formInput")
     inputs.forEach(input => {
       let placeholderValue = input.getAtributte("placeholder")
@@ -116,7 +97,7 @@ export const basicFormSteps = ({
     })
   })
 
-  Then('all inputs should be without error', () => {
+  Then(/^all inputs should be without error$/, () => {
     const inputs = app.container.querySelectorAll("formInput")
     inputs.forEach(input => {
       let inputClassName = input.className
@@ -124,70 +105,56 @@ export const basicFormSteps = ({
     })
   })
 
-  Given(/^the user selects the ['"](.*)['"] section$/, (sectionName) => {
-    const testId = getSectionInput(sectionName)
-    const section = screen.getByTestId(testId)
-    sectionUsed = section
-    fireEvent.click(section)
+  Given(/^the user clicks the "(.*)" field$/, (fieldName) => {
+    const testId = getSectionInput(fieldName)
+    const field = screen.getByTestId(testId)
+    fireEvent.click(field)
   })
 
-  When(/^the user deselects the ['"](.*)['"] section$/, (sectionName) => {
-    const testId = getSectionInput(sectionName)
-    const section = screen.getByTestId(testId)
-    fireEvent.blur(section)
+  When(/^the user clicks out of the "(.*)" field$/, (fieldName) => {
+    const testId = getSectionInput(fieldName)
+    const field = screen.getByTestId(testId)
+    fireEvent.blur(field)
   })
 
-  Then(/^the ['"](.*)['"] section should show an error$/, (sectionName) => {
-    const testId = getSectionInput(sectionName)
-    const input = screen.getByTestId(testId)
-    expect(input).toHaveClass("formInput has-error")
+  Then(/^the "(.*)" field should show an error$/, (fieldName) => {
+    const testId = getSectionInput(fieldName)
+    const field = screen.getByTestId(testId)
+    expect(field).toHaveClass("formInput has-error")
   })
 
-  When(/^the user types ['"](.*)['"]$/, (inputWritten) => {
-    const section = sectionUsed
-    fireEvent.change(section, {target: {value: inputWritten}})
+  And(/^the user types "(.*)" inside the "(.*)" field$/, (inputWritten, fieldName) => {
+    const testId = getSectionInput(fieldName)
+    const field = screen.getByTestId(testId)
+    fireEvent.change(field, {target: {value: inputWritten}})
+  })
+  
+  When(/^the user earases all inputs inside the "(.*)" field$/, (fieldName) => {
+    const testId = getSectionInput(fieldName)
+    const field = screen.getByTestId(testId)
+    fireEvent.change(field, {target: {value: ''}})
   })
 
-  When(/^the user deletes his input$/, () => {
-    const section = sectionUsed
-    fireEvent.change(section, {target: {value: ''}})
-  })
-
-  Given(/the user completes the form with the next data$/, (formData) => {
-    inputFormData(formData)
-  });
-
-  Then(/the app should warn the user$/, () => {
-    const testId = getSectionInput("username")
-    const input = screen.getByTestId(testId)
-    expect(input).toHaveClass("formInput has-error")
-  })
-
-  Then('the submit button should be enabled', () => {
-    const button = screen.getByTestId("submitButton")
-    expect(button.disabled).toBe(false)
-  })
-
-  Then(/^the ['"](.*)['"] section should show a list$/, (sectionName) => {
-    const selectElement = screen.getByRole('combobox', {name: '' })
-    expect(screen.getByRole('option', { name: 'SPAIN'}).selected).toBe(false)
-    expect(screen.getByRole('option', { name: 'JAPAN'}).selected).toBe(false)
-  })
-
-  And(/^the user selects ['"](.*)['"]$/, (selection) => {
+  And(/^the user selects "(.*)" option inside the list$/, (selection) => {
     const selectElement = screen.getByRole('combobox', {name: '' })
     fireEvent.change(selectElement, {target: { value: selection}})
   })
 
-  When(/^the users presses the ['"](.*)['"] button$/, (buttonType) => {
-    const button = screen.getByTestId(buttonType + 'Button')
+  Then(/^the "(.*)" button should be enabled$/, (buttonName) => {
+    const button = screen.getByTestId(buttonName + "Button")
+    expect(button.disabled).toBe(false)
+  });
+
+  And(/^the user presses the "(.*)" button$/, (buttonName) => {
+    const button = screen.getByTestId(buttonName + 'Button')
     fireEvent.click(button)
   })
 
-  Then(/^the app should validate the user$/, () => {
-    const validationMessage = screen.getByTestId("validationMessage")
-    expect(validationMessage.textContent).not.toBe(null)
+  Then(/^the form should be cleared$/, () => {
+    const inputs = app.container.querySelectorAll("formInput")
+    inputs.forEach(input => {
+      expect(input.value).toBe('')
+    })
   })
-
 }
 
