@@ -29,7 +29,7 @@ function App() {
     setUsername('')
     setName('')
     setSurname('')
-    setCountry("SELECT A COUNTRY")
+    setCountry("")
     setId('')
     setError(false)
     setValidForm(false)

@@ -130,17 +130,6 @@ Scenario Outline: Submit button enabled - form completed and all data is valid
         | DR123  | DARIO   | RUA    | SPAIN  | 12345678D    |
         | RD321  | MARK    | EVANS  | JAPAN  | 123456789012 |
 
-# Scenario: Succesful verification
-#     Given the user completes the form with the next data
-#     """
-#     username: PEP123
-#     name: PEPE
-#     surname: LOCO
-#     country: SPAIN
-#     id: 12345678S
-#     """
-#     When the users presses the 'submit' button
-#     Then the app should validate the user
 Scenario Outline: Form submition - form completed and all data is valid
     Given the user types "<input>" inside the "username" field
     And the user types "<input2>" inside the "name" field

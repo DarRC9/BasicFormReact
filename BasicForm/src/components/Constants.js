@@ -1,1 +1,1 @@
-export const countryList = ['SELECT COUNTRY', 'SPAIN', 'JAPAN']
+export const countryList = ['', 'SPAIN', 'JAPAN']
