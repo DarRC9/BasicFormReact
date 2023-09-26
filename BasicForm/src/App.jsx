@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { FieldForm } from './components/Field'
 import { ValidationMessage } from './components/ValidationMessage'
-import { checkUsername, checkName, checkSurname, checkCountry, checkId, handleEmptyInput} from './components/FieldValidations'
+import { checkUsername, checkName, checkSurname, checkCountry, checkId, handleEmptyInput, checkForm} from './components/FieldValidations'
 
 function App() {
 
@@ -14,20 +14,6 @@ function App() {
   const [id, setId] = useState('')
   const [error, setError] = useState(false)
   const [validForm, setValidForm] = useState(false)
-
-
-  const checkForm = (username, name, surname, country, id, error) => {
-    let validation = true
-    if (username !== '' 
-        && name !== ''
-        && surname !== ''
-        && country !== ''
-        && id !== ''
-        && error === false) {
-          validation = false
-        }
-    return validation
-  }
 
   const submitInformation = (click) => {
     click.preventDefault()

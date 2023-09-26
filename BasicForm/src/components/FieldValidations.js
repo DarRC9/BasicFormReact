@@ -22,7 +22,7 @@ export const checkName = (nameInput, username) => {
     } else if (nameInput === '') {
       error = "Name can't be empty"
     } else if (username.includes(nameInput)) {
-      error ="Name must no be in username"
+      error = "Name must not be in username"
     } 
     return error
   }
@@ -32,9 +32,9 @@ export const checkSurname = (surnameInput, username) => {
     if (surnameInput !== surnameInput.toUpperCase()) {
       error = "Surname must be written in capital letters"
     } else if (surnameInput === '') {
-      error = "Surame can't be empty"
+      error = "Surname can't be empty"
     } else if (username.includes(surnameInput)) {
-      error = "Surame must no be in username"
+      error = "Surname must not be in username"
     } 
     return error
   }
@@ -100,3 +100,16 @@ export const handleEmptyInput = (inputValue) => {
     } 
     return hasError
   }
+
+export const checkForm = (username, name, surname, country, id, error) => {
+  let validation = true
+  if (username !== '' 
+      && name !== ''
+      && surname !== ''
+      && country !== ''
+      && id !== ''
+      && error === false) {
+        validation = false
+      }
+  return validation
+}

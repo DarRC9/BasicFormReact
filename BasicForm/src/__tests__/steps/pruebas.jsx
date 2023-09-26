@@ -1,3 +1,37 @@
+const selectCountry = (country) => {
+  const selectElement = screen.getByRole('combobox', {name: '' })
+  fireEvent.change(selectElement, {target: { value: country}})
+  //expect(screen.getByRole('option', { name: 'SPAIN'}).selected).toBe(true)
+}
+
+const fillSectionInput = (data, sectionType) => {
+  const testId = getSectionInput(sectionType)
+  const section = screen.getByTestId(testId)
+  fireEvent.change(section, {target: {value: data}})
+}
+
+const inputFormData = (formData) => {
+  const information = {}
+  const lines = formData.trim().split('\n')
+  lines.forEach(line => {
+    const [key, value] = line.split(':')
+    information[key.trim()] = value.trim()
+  })
+  const usernameData = Object.values(information)[0]
+  const nameData = Object.values(information)[1]
+  const surnameData = Object.values(information)[2]
+  const countryData = Object.values(information)[3]
+  const idData = Object.values(information)[4]
+
+  fillSectionInput(usernameData, "username")
+  fillSectionInput(nameData, "name")
+  fillSectionInput(surnameData, "surname")
+  fillSectionInput(idData, "id")
+  selectCountry(countryData)
+}
+
+
+
 Then(/^all inputs should be enabled$/, () => {
     const inputs = app.container.querySelectorAll("formInput")
     inputs.forEach(input => {

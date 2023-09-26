@@ -9,58 +9,9 @@ const getSectionInput = (sectionName) => {
     return testId
 }
 
-// const getSectionMessage = (sectionName) => {
-//   let testId
-//     switch (sectionName) {
-//       case "username":
-//         testId = "usernameMessage"
-//         break;
-//       case "name":
-//         testId = "nameMessage"
-//         break;
-//       case "surname":
-//         testId = "surnameMessage"
-//         break;
-//       case "id":
-//         testId = "idMessage"
-//         break;
-//       default:
-//         testId = "countryMessage"
-//         break;
-//     }
-//     return testId
-// }
-
-const selectCountry = (country) => {
-  const selectElement = screen.getByRole('combobox', {name: '' })
-  fireEvent.change(selectElement, {target: { value: country}})
-  //expect(screen.getByRole('option', { name: 'SPAIN'}).selected).toBe(true)
-}
-
-const fillSectionInput = (data, sectionType) => {
-  const testId = getSectionInput(sectionType)
-  const section = screen.getByTestId(testId)
-  fireEvent.change(section, {target: {value: data}})
-}
-
-const inputFormData = (formData) => {
-  const information = {}
-  const lines = formData.trim().split('\n')
-  lines.forEach(line => {
-    const [key, value] = line.split(':')
-    information[key.trim()] = value.trim()
-  })
-  const usernameData = Object.values(information)[0]
-  const nameData = Object.values(information)[1]
-  const surnameData = Object.values(information)[2]
-  const countryData = Object.values(information)[3]
-  const idData = Object.values(information)[4]
-
-  fillSectionInput(usernameData, "username")
-  fillSectionInput(nameData, "name")
-  fillSectionInput(surnameData, "surname")
-  fillSectionInput(idData, "id")
-  selectCountry(countryData)
+const getSectionMessage = (sectionName) => {
+  const testId = sectionName + "Message"
+  return testId
 }
 
 export const basicFormSteps = ({
@@ -71,7 +22,6 @@ export const basicFormSteps = ({
 }) => {
 
   let app
-  let fieldUsed
 
   Given(/^the user opens the basic user data form$/, () => {
     app = render(<App/>)
@@ -123,6 +73,13 @@ export const basicFormSteps = ({
     expect(field).toHaveClass("formInput has-error")
   })
 
+  Then(/^the "(.*)" field should show the "(.*)" error$/, (fieldName, errorType) => {
+    const testId = getSectionMessage(fieldName)
+    const message = screen.getByTestId(testId)
+    //console.log(message.textContent)
+    expect(message.textContent).toEqual(errorType)
+  })
+
   And(/^the user types "(.*)" inside the "(.*)" field$/, (inputWritten, fieldName) => {
     const testId = getSectionInput(fieldName)
     const field = screen.getByTestId(testId)
@@ -148,6 +105,20 @@ export const basicFormSteps = ({
   And(/^the user presses the "(.*)" button$/, (buttonName) => {
     const button = screen.getByTestId(buttonName + 'Button')
     fireEvent.click(button)
+  })
+
+  Then(/^the form should be "(.*)"$/, (formAction) => {
+    
+    if (formAction === "cleared") {
+      const inputs = app.container.querySelectorAll("formInput")
+      inputs.forEach(input => {
+        expect(input.value).toBe('')
+      })
+    } else if (formAction === "validated") {
+      const validationMessage = screen.getByTestId("validationMessage")
+      expect(validationMessage.textContent).not.toBe(null)
+    }
+    
   })
 
   Then(/^the form should be cleared$/, () => {
