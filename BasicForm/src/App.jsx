@@ -6,7 +6,6 @@ import { ValidationMessage } from './components/ValidationMessage'
 import { checkUsername, checkName, checkSurname, checkCountry, checkId, handleEmptyInput, checkForm} from './components/FieldValidations'
 
 function App() {
-
   const [username, setUsername] = useState('')
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
@@ -104,5 +103,4 @@ function App() {
     </div>
   )
 }
-
 export default App

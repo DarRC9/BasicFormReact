@@ -67,11 +67,17 @@ export const basicFormSteps = ({
     fireEvent.blur(field)
   })
 
-  Then(/^the "(.*)" field should show an error$/, (fieldName) => {
-    const testId = getSectionInput(fieldName)
-    const field = screen.getByTestId(testId)
-    expect(field).toHaveClass("formInput has-error")
-  })
+  // Then(/^the "(.*)" field should show an error$/, (fieldName) => {
+  //   const testId = getSectionInput(fieldName)
+  //   const field = screen.getByTestId(testId)
+  //   expect(field).toHaveClass("formInput has-error")
+  // })
+
+  Then(/^the "(.*)" field should show no error$/, (fieldName) => {
+    const testId = getSectionMessage(fieldName)
+    const message = screen.getByTestId(testId)
+    expect(message.textContent).toBe("")
+  });
 
   Then(/^the "(.*)" field should show the "(.*)" error$/, (fieldName, errorType) => {
     const testId = getSectionMessage(fieldName)
